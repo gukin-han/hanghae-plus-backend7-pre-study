@@ -33,8 +33,7 @@
 
 ## ERD
 
-![image](https://github.com/user-attachments/assets/b5041d58-fd9d-40f8-9743-b3a0a2219ccb)
-
+![image](https://github.com/user-attachments/assets/b8d7d7c7-85b6-42ca-b5d2-aa4bc08a68d2)
 
 
 <br/>
