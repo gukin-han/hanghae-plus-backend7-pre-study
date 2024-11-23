@@ -1,9 +1,12 @@
 package com.example.pre_study.controller;
 
+import com.example.pre_study.controller.request.CreatePostRequest;
 import com.example.pre_study.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -15,5 +18,10 @@ public class PostController {
     @GetMapping("/api/v1/posts")
     public ResponseEntity<?> getPosts() {
         return ResponseEntity.ok(postService.getPosts());
+    }
+
+    @PostMapping("/api/v1/posts")
+    public ResponseEntity<?> createPost(@RequestBody CreatePostRequest request) {
+        return ResponseEntity.ok(postService.createPost(request));
     }
 }

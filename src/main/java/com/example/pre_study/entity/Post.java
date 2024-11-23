@@ -2,6 +2,7 @@ package com.example.pre_study.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -28,4 +29,13 @@ public class Post extends BaseEntity {
     private String content;
 
     private LocalDateTime publishedAt;
+
+    @Builder
+    private Post(Long postId, User user, String title, String content, LocalDateTime publishedAt) {
+        this.postId = postId;
+        this.user = user;
+        Title = title;
+        this.content = content;
+        this.publishedAt = publishedAt;
+    }
 }
