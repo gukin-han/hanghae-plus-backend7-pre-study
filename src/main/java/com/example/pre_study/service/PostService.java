@@ -1,6 +1,7 @@
 package com.example.pre_study.service;
 
 import com.example.pre_study.controller.request.CreatePostRequest;
+import com.example.pre_study.controller.request.UpdatePostRequest;
 import com.example.pre_study.entity.Post;
 import com.example.pre_study.entity.User;
 import com.example.pre_study.repository.PostRepository;
@@ -8,9 +9,11 @@ import com.example.pre_study.repository.UserRepository;
 import com.example.pre_study.service.response.PostResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -45,5 +48,15 @@ public class PostService {
         final Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new IllegalArgumentException(ERROR_POST_NOT_FOUND));
         return PostResponse.fromEntity(post);
+    }
+
+    @Transactional
+    public void updatePost(UpdatePostRequest request) {
+        final Post post = postRepository.findById(request.getPostId())
+                .orElseThrow(() -> new IllegalArgumentException(ERROR_POST_NOT_FOUND));
+        final User user = userRepository.findByUsernameAndPassword(request.getUsername(), request.getPassword())
+                .orElseThrow(() -> new IllegalArgumentException(ERROR_USER_NOT_FOUND));
+
+        post.updatePost(request.getTitle(), request.getContent());
     }
 }

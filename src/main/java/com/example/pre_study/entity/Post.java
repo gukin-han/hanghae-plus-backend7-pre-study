@@ -23,7 +23,7 @@ public class Post extends BaseEntity {
     private User user;
 
     @Column(nullable = false)
-    private String Title;
+    private String title;
 
     @Column(nullable = false)
     private String content;
@@ -34,8 +34,13 @@ public class Post extends BaseEntity {
     private Post(Long postId, User user, String title, String content, LocalDateTime publishedAt) {
         this.postId = postId;
         this.user = user;
-        Title = title;
+        this.title = title;
         this.content = content;
         this.publishedAt = publishedAt;
+    }
+
+    public void updatePost(String title, String content) {
+        this.title = title;
+        this.content = content;
     }
 }
