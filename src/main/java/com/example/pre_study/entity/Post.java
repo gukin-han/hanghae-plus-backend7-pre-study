@@ -5,6 +5,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -25,6 +27,5 @@ public class Post extends BaseEntity {
     @Column(nullable = false)
     private String content;
 
-    @Column(nullable = false)
-    private boolean isPublished;
+    private LocalDateTime publishedAt;
 }
