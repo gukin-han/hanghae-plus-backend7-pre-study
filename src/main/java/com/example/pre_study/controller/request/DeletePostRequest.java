@@ -6,15 +6,9 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class UpdatePostRequest {
+public class DeletePostRequest {
 
     private Long postId;
-
-    @NotBlank
-    private String title;
-
-    @NotBlank
-    private String content;
 
     @NotNull
     private String username;

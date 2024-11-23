@@ -1,6 +1,7 @@
 package com.example.pre_study.service;
 
 import com.example.pre_study.controller.request.CreatePostRequest;
+import com.example.pre_study.controller.request.DeletePostRequest;
 import com.example.pre_study.controller.request.UpdatePostRequest;
 import com.example.pre_study.entity.Post;
 import com.example.pre_study.entity.User;
@@ -52,11 +53,21 @@ public class PostService {
 
     @Transactional
     public void updatePost(UpdatePostRequest request) {
-        final Post post = postRepository.findById(request.getPostId())
-                .orElseThrow(() -> new IllegalArgumentException(ERROR_POST_NOT_FOUND));
         final User user = userRepository.findByUsernameAndPassword(request.getUsername(), request.getPassword())
                 .orElseThrow(() -> new IllegalArgumentException(ERROR_USER_NOT_FOUND));
+        final Post post = postRepository.findById(request.getPostId())
+                .orElseThrow(() -> new IllegalArgumentException(ERROR_POST_NOT_FOUND));
+
 
         post.updatePost(request.getTitle(), request.getContent());
+    }
+
+    public void deletePost(DeletePostRequest request) {
+        final User user = userRepository.findByUsernameAndPassword(request.getUsername(), request.getPassword())
+                .orElseThrow(() -> new IllegalArgumentException(ERROR_USER_NOT_FOUND));
+        final Post post = postRepository.findById(request.getPostId())
+                .orElseThrow(() -> new IllegalArgumentException(ERROR_POST_NOT_FOUND));
+
+        postRepository.delete(post);
     }
 }

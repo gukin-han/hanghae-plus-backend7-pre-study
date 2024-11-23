@@ -1,6 +1,7 @@
 package com.example.pre_study.controller;
 
 import com.example.pre_study.controller.request.CreatePostRequest;
+import com.example.pre_study.controller.request.DeletePostRequest;
 import com.example.pre_study.controller.request.UpdatePostRequest;
 import com.example.pre_study.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -33,6 +34,14 @@ public class PostController {
                                         @RequestBody UpdatePostRequest request) {
         request.setPostId(postId);
         postService.updatePost(request);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/api/v1/posts/{postId}")
+    public ResponseEntity<?> deletePost(@PathVariable Long postId,
+                                        @RequestBody DeletePostRequest request) {
+        request.setPostId(postId);
+        postService.deletePost(request);
         return ResponseEntity.ok().build();
     }
 }
